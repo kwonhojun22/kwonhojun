@@ -1,0 +1,14 @@
+#pragma once
+#include "fruit.h"
+class store {
+public:
+    store() {};
+    store(int a, int b, int c, float d, float e, float f, int g, int h) {
+        apple = fruit(a, d, h);
+        pear = fruit(a, d, h);
+        peach = fruit(a, d, h);
+        mango = fruit(d, a, g);
+    }
+    fruit apple, pear, peach, mango;
+    float total();
+};

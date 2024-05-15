@@ -1,0 +1,19 @@
+#pragma once
+#include <iostream>
+#include "store.h"
+
+using namespace std;
+int main() {
+	store A[5], * B;
+	cout << " " << sizeof(A) << endl;
+	cout << " " << sizeof(store) << endl;
+	for (int i = 0; i < 5; i++) {
+		A[i] = store(i + 2, 3, 4, 1000 + 100 * i, 500, 600, 4, 3);
+	}
+	cout << A[2].apple.many << " " << A[2].apple.price << endl;
+	cout << (A + 4)->apple.many << " " << (A + 4)->apple.price << endl;
+	B = A + 2;
+	cout << B[0].apple.many << " " << B[0].apple.price << endl;
+	cout << (B + 2)->apple.many << " " << (B + 2)->apple.price << endl;
+	return 123;
+}

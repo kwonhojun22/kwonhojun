@@ -1,0 +1,16 @@
+#pragma once
+class fruit {
+public:
+    // constructor
+    fruit();
+    fruit(float p, int n, int m);
+    // default values
+
+  // member data
+    int many;
+    float price;
+    int expirydate;
+    // member function
+    float show();
+    float show_all();
+};

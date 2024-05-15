@@ -1,0 +1,16 @@
+#pragma once
+#include "fruit.h"
+fruit::fruit() {
+    price = 200; many = 4; expirydate = 3;
+}
+    fruit::fruit(float p, int n, int m) {
+        price = p;
+        many = n;
+        expirydate = m;
+}
+    float fruit::show() {
+        return price * many;
+    }
+    float fruit::show_all() {
+        return many + expirydate;
+ }

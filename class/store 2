@@ -1,0 +1,18 @@
+#pragma once
+#include <iostream>
+#include "store.h"
+using namespace std;
+int main() {
+	store A, B, C;
+	A = store(4, 3, 3, 800, 1000, 800);
+	B = store(3, 3, 4, 1000, 1200, 1000);
+	C = A + B;
+	cout << A.total() << " " << B.total() << endl;
+	cout << C.total() << endl;
+
+	A *= 2;
+	cout << A.total() << endl;
+	return 0;
+}
+
+	

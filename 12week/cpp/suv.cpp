@@ -14,3 +14,8 @@ void suv::klaxon(int ii) {
 		std::cout << "Beep\n";
 	}
 }
+/*void suv::light(int ii) {
+	for (int i = 0; i < ii; i++) {
+		std::cout << "SSang" << std::endl;
+	}
+}*/

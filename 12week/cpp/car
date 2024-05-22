@@ -1,0 +1,25 @@
+#include "car.h"
+#include <iostream>  //  for cout
+
+car::car(float ss, int ww, float pp, float ee) {
+	speed = ss;
+	wheels = ww;
+	price = pp;
+	gear = ee;
+	std::cout << " new car \n";
+}
+void car::speedUp(float x) { speed += x; }
+void car::speedDown(float x) { speed -= x; }
+void car::setPrice(float x) { price = x; }
+float car::getPrice() { return price; }
+void car::speedChange(float x) {
+	if (x > 0) speedUp(x);
+	else speedDown(-x);
+}
+void car::setWheels(int n) { wheels = n; }
+int car::getWheels() { return wheels; }
+void car::klaxon(int n) {
+	for (int i = 0; i < n; i++) {
+		std::cout << "  suh no horn \n";
+	}
+}

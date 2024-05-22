@@ -13,7 +13,7 @@ int main() {
 	mycars[3] = new motor;
 	mycars[4] = new suv;
 	for (int i = 0; i < 5; i++) mycars[i]->klaxon(1);
-
+//for (int i = 0; i < 5; i++) mycars[i]->light(1);
 	// Sprint 4
 	car* mycar;
 	mycar = new car(100.0, 4, 4500.0,4); std::cout << mycar->speed << "\n";

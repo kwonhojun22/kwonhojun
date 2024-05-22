@@ -1,0 +1,21 @@
+#pragma once
+#include <cmath>
+using namespace std;
+class tv {
+public:
+   tv();//constructor
+   int nswith = 1;
+   float voltage = 220;
+   bool onoff;// bool 함수라 true or fulse로 나옴
+   int x, y;
+   //function
+   void turnon();
+   void brightcontrol();
+   float const getbrightness();
+private:
+   float bright;
+   void turnchannel(int);
+   void volumecontrol();
+   int channel;
+   float volume;
+};

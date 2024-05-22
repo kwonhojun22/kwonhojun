@@ -6,6 +6,7 @@ private:
 	int helmets;
 public:
 	void klaxon(int);
+//void light(int);
 	void setSparewheels(int);
 	int getSparewheels();
 	float getTotalPrice();

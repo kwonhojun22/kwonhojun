@@ -4,6 +4,7 @@ public:
 	car() :speed(0.1), wheels(0), price(0.2),gear(5) {};
 	car(float, int, float,float);
 	virtual void klaxon(int);
+		//virtual void light(int);
 	void setPrice(float);
 	float getPrice();
 	float speed;

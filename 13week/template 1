@@ -1,0 +1,35 @@
+#include <iostream>
+#include<string>
+using namespace std;
+template <typename T, typename V>
+/*T foo(T a, T b) {
+	T x = 10;
+	return(a + b) / x;
+
+}
+int main() {
+	cout << foo(23, 44) << endl;//T는 int로 실행
+	cout << foo(23.0, 44.0) << endl;//flaot 실행 그러므로 결과가 다르게 나옴
+	return 123;
+}
+
+bool less_than(T a, T b) {//less_than 이라는 함수
+	return a < b;//bool 이므로 1,0이 return
+}
+int main() {
+	cout << less_than(2, 3) << endl;
+	cout << less_than(2.7, 3.2) << endl;
+	cout << less_than(3.2, 2.7) << endl;
+	string word1 = "ABC", word2 = "XY"; //string이라는것은 사전에서 빠르게 나오는것이 작은수
+	cout << less_than(word1, word2) << endl;
+	cout << less_than(word2, word1) << endl;
+	return 123;
+	}*/
+bool less_than(T a, V b) {
+	return a < b;
+}
+void main() {
+	cout << boolalpha << less_than(2, 3.2) << endl;
+	cout << less_than(2.7, 3) << endl;
+	cout << less_than(3, 2.7) << endl;
+}

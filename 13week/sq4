@@ -1,0 +1,96 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <Windows.h>
+using namespace std;
+
+class Queue {
+public:
+    Queue(int ni, int no, int capacity)
+        : NI(ni), NO(no), capacity(capacity), totalLostPackets(0) {
+        q.reserve(capacity);
+        packets.reserve(120); // 2분 동안의 데이터를 저장할 수 있도록 벡터의 용량을 예약
+    }
+
+    void simulate(int endtime) {
+        int stime = 0;
+        while (stime < endtime) {
+            int ni = rand() % NI;
+            cout << "stime: " << stime << "s" << endl;
+            cout << "Adding " << ni << " packets" << endl;
+
+            // 패킷 추가
+            if (capacity < q.size() + ni) {
+                int lost = q.size() + ni - capacity;
+                totalLostPackets += lost;
+                ni -= lost;
+                cout << "Overflow! Lost " << lost << " packets" << endl;
+            }
+
+            for (int i = 0; i < ni; i++) {
+                q.push_back(rand() % 100);
+            }
+
+            cout << "Queue size after adding: " << q.size() << endl;
+
+            // 패킷 제거
+            int no = rand() % NO;
+            cout << "Removing " << no << " packets" << endl;
+            for (int i = 0; i < no && !q.empty(); i++) {
+                q.erase(q.begin());
+            }
+
+            cout << "Queue size after removing: " << q.size() << endl;
+            cout << "----------------------------------------" << endl;
+
+            packets.push_back(q.size());
+
+            Sleep(1000);
+            stime++;
+        }
+        saveResults(endtime);
+        calculateMetrics(endtime);
+    }
+
+private:
+    vector<int> q;
+    int NI, NO, capacity;
+    int totalLostPackets;
+    vector<int> packets;
+
+    void saveResults(int duration) {
+        ofstream outFile("NoPackets2.txt");
+        if (outFile.is_open()) {
+            for (auto it = packets.begin(); it != packets.end(); ++it) {
+                outFile << *it << endl;
+            }
+            outFile.close();
+        }
+        else {
+            cout << "Unable to open file" << endl;
+        }
+    }
+
+    void calculateMetrics(int duration) {
+        int sum = 0, maxVal = 0;
+        for (auto it = packets.begin(); it != packets.end(); ++it) {
+            sum += *it;
+            if (*it > maxVal) {
+                maxVal = *it;
+            }
+        }
+        double avg = static_cast<double>(sum) / duration;
+
+        cout << "Average queue size: " << avg << endl;
+        cout << "Maximum queue size: " << maxVal << endl;
+        cout << "Total sum of queue sizes: " << sum << endl;
+        cout << "Total lost packets due to overflow: " << totalLostPackets << endl;
+    }
+};
+
+int main() {
+    int NI = 10, NO = 20, capacity = 100;
+    Queue queue(NI, NO, capacity);
+    queue.simulate(10); // 10초 동안 시뮬레이션
+    return 123;
+}

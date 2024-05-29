@@ -1,0 +1,100 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <Windows.h>
+using namespace std;
+
+class Queue {
+public:
+    Queue(int pie, int cookie, int cake)
+        : PIE(pie), Cookie(cookie), Cake(cake), totalSell(0), totalProduced(0), maxProduction(0), maxSell(0), selled(0) {
+        q.reserve(cake);
+    }
+
+    void simulate(int days) {
+        for (int day = 0; day < days; ++day) {
+            int dailyProduced = produce(day);
+            int dailySold = sell(day);
+            updateMetrics(dailyProduced, dailySold);
+
+            Sleep(1000); 
+        }
+
+        calculateMetrics(days);
+    }
+
+private:
+    vector<int> q;
+    int PIE, Cookie, Cake;
+    int totalSell;
+    int totalProduced;
+    int maxProduction;
+    int maxSell;
+    int selled; 
+    vector<int> dailyProductions;
+    vector<int> dailySells;
+
+    int produce(int day) {
+        int pie = rand() % PIE;
+        int cookie = rand() % Cookie;
+        int cake = rand() % Cake;
+        int produced = pie + cookie + cake;
+
+        selled = rand() % (produced + 1); 
+
+        cout << "Day " << day + 1 << endl;
+        cout << "생산량 - 파이: " << pie << ", 쿠키: " << cookie << ", 케이크: " << cake << endl;
+        cout << "하루 총 생산량: " << produced << endl;
+
+        for (int i = 0; i < produced; i++) {
+            q.push_back(rand() % 100);
+        }
+
+        cout << "남은 총량: " << q.size() << endl;
+        return produced;
+    }
+
+    int sell(int day) {
+        int sold = selled;
+        int initialSize = q.size();
+        cout << "판매량 " << sold << " 개" << endl;
+
+        for (int i = 0; i < sold && !q.empty(); i++) {
+            q.erase(q.begin());
+        }
+
+        int actualSold = initialSize - q.size();
+        cout << "남은 총 개수: " << q.size() << endl;
+        cout << "----------------------------------------" << endl;
+        return actualSold;
+    }
+
+    void updateMetrics(int produced, int sold) {
+        dailyProductions.push_back(produced);
+        dailySells.push_back(sold);
+        totalProduced += produced;
+        totalSell += sold;
+        if (produced > maxProduction) maxProduction = produced;
+        if (sold > maxSell) maxSell = sold;
+    }
+
+    void calculateMetrics(int days) {
+        double avgProduction = static_cast<double>(totalProduced) / days;
+        double avgSell = static_cast<double>(totalSell) / days;
+
+        cout << "10일 결과:" << endl;
+        cout << "하루 최대 생산량: " << maxProduction << endl;
+        cout << "하루 최대 판매량: " << maxSell << endl;
+        cout << "평균 생산량: " << avgProduction << endl;
+        cout << "평균 판매량: " << avgSell << endl;
+        cout << "총 생산량: " << totalProduced << endl;
+        cout << "총 판매량: " << totalSell << endl;
+    }
+};
+
+int main() {
+    int PIE = 10, Cookie = 20, Cake = 15;
+    Queue queue(PIE, Cookie, Cake);
+    queue.simulate(10); 
+    return 123;
+}

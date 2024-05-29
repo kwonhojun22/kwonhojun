@@ -9,7 +9,7 @@ public:
     Queue(int ni, int no, int capacity)
         : NI(ni), NO(no), capacity(capacity), totalLostPackets(0) {
         q.reserve(capacity);
-        packets.reserve(120); // 2분 동안의 데이터를 저장할 수 있도록 벡터의 용량을 예약
+        packets.reserve(120); 
     }
 
     void simulate(int endtime) {
@@ -19,7 +19,7 @@ public:
             cout << "stime: " << stime << "s" << endl;
             cout << "Adding " << ni << " packets" << endl;
 
-            // 패킷 추가
+           
             if (capacity < q.size() + ni) {
                 int lost = q.size() + ni - capacity;
                 totalLostPackets += lost;
@@ -33,7 +33,7 @@ public:
 
             cout << "Queue size after adding: " << q.size() << endl;
 
-            // 패킷 제거
+           
             int no = rand() % NO;
             cout << "Removing " << no << " packets" << endl;
             for (int i = 0; i < no && !q.empty(); i++) {
@@ -91,6 +91,6 @@ private:
 int main() {
     int NI = 10, NO = 20, capacity = 100;
     Queue queue(NI, NO, capacity);
-    queue.simulate(120); // 10초 동안 시뮬레이션
+    queue.simulate(120); 
     return 123;
 }

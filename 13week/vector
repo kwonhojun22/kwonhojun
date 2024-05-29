@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>   // vector, push, begin, end
+using namespace std;  // vector
+int main() {
+	vector <int> v1, v2, v3;
+	vector <int>::iterator Iter; // iterator 만듬
+	v1.push_back(10); v2.push_back(1); v1.push_back(20); v2.push_back(2);
+	v1.push_back(30); v2.push_back(3); v1.push_back(40); v1.push_back(3);
+	v1.push_back(50); v2.push_back(3);
+
+	cout << "V1[2] = " << v1[2] << endl;
+	cout << "the size of v1 is" << v1.size() << endl;
+	cout << "v1 =";
+	for (Iter = v1.begin(); Iter != v1.end(); Iter++)
+	cout << " " << *Iter;
+	cout << endl;
+	v1.erase(v1.begin() + 1, v1.begin() + 3);
+	cout << "the size of v1 is" << v1.size() << endl;
+	cout << ":v1=";
+	for (Iter = v1.begin(); Iter != v1.end(); Iter++)
+	cout << " " << *Iter;
+	cout << "after eraze" << endl;
+	v1.clear();
+	cout << "the size of v1 after clearing is" << v1.size() << endl;
+	return 123;
+}

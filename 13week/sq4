@@ -81,8 +81,8 @@ private:
         }
         double avg = static_cast<double>(sum) / duration;
 
-        cout << "평균 크기: " << avg << endl;
-        cout << "최대 크기: " << maxVal << endl;
+        cout << "평균 q의 크기: " << avg << endl;
+        cout << "최대 q의 크기: " << maxVal << endl;
         cout << "총 q의 합: " << sum << endl;
         cout << "overflow로 없어진 총 q의 합: " << totalLostPackets << endl;
     }

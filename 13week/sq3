@@ -39,25 +39,8 @@ int main() {
         // 현재 큐의 상태를 배열에 저장
         packets[stime] = q.size();
 
-        // 1초 대기
-        Sleep(1000);
-        stime++;
-    }
-
-    // 2분 후 큐 상태의 평균, 최대값, 합계를 계산
-    int sum = 0, maxVal = 0;
-    for (int i = 0; i < endtime; i++) {
-        sum += packets[i];
-        if (packets[i] > maxVal) {
-            maxVal = packets[i];
-        }
-    }
-    double avg = static_cast<double>(sum) / endtime;
-
-    // 결과 출력
-    cout << "Average queue size: " << avg << endl;
-    cout << "Maximum queue size: " << maxVal << endl;
-    cout << "Total sum of queue sizes: " << sum << endl;
+        // 1초 기: " << maxVal << endl;
+    cout << "총 q의 합: " << sum << endl;
 
     // 큐 상태를 텍스트 파일에 저장
     ofstream outFile("packets.txt");

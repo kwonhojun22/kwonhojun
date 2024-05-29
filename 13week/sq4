@@ -71,7 +71,7 @@ private:
         }
     }
 
-    void calculateMetrics(int duration) {
+    void calculateMetrics(int endtime) {
         int sum = 0, maxVal = 0;
         for (auto it = packets.begin(); it != packets.end(); ++it) {
             sum += *it;
@@ -79,7 +79,7 @@ private:
                 maxVal = *it;
             }
         }
-        double avg = static_cast<double>(sum) / duration;
+        double avg = static_cast<double>(sum) / endtime;
 
         cout << "평균 q의 크기: " << avg << endl;
         cout << "최대 q의 크기: " << maxVal << endl;
@@ -91,6 +91,6 @@ private:
 int main() {
     int NI = 10, NO = 20, capacity = 100;
     Queue queue(NI, NO, capacity);
-    queue.simulate(10); // 10초 동안 시뮬레이션
+    queue.simulate(120); // 10초 동안 시뮬레이션
     return 123;
 }

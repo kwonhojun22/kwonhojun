@@ -1,20 +1,21 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include<ctime>
 #include <Windows.h>
 using namespace std;
 
 int main() {
     int NI = 7, NO = 15, ni, no;
     vector<int> q; srand(time(0));
-    int packets[120] = { 0 }; 
+    int packets[120] = { 0 };
 
-    
+
     int stime = 0;
     const int endtime = 120; // 2분 = 120초
 
     while (stime < endtime) {
-        
+
         ni = rand() % NI;
         cout << "Elapsed time: " << stime << "s" << endl;
         cout << "Adding " << ni << " packets" << endl;
@@ -22,37 +23,38 @@ int main() {
             q.push_back(rand() % 100); // 0~99 사이의 랜덤 값
         }
 
-        
+
         cout << "Queue size after adding: " << q.size() << endl;
 
-        
+
         no = rand() % NO;
         cout << "Removing " << no << " packets" << endl;
         for (int i = 0; i < no && !q.empty(); i++) {
             q.erase(q.begin());
         }
 
-        
+
         cout << "Queue size after removing: " << q.size() << endl;
         cout << "----------------------------------------" << endl;
 
-        
+
         packets[stime] = q.size();
 
-        // 1초 기: " << maxVal << endl;
-    cout << "총 q의 합: " << sum << endl;
+      
+        int sum = 0;
+        cout << "총 q의 합: " << sum << endl;
 
-   
-    ofstream outFile("packets.txt");
-    if (outFile.is_open()) {
-        for (int i = 0; i < endtime; i++) {
-            outFile << packets[i] << endl;
+
+        ofstream outFile("packets.txt");
+        if (outFile.is_open()) {
+            for (int i = 0; i < endtime; i++) {
+                outFile << packets[i] << endl;
+            }
+            outFile.close();
         }
-        outFile.close();
-    }
-    else {
-        cout << "Unable to open file" << endl;
-    }
+        else {
+            cout << "Unable to open file" << endl;
+        }
 
-    return 123;
-}
+        return 123;
+    }

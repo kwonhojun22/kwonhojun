@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
     int NI = 7, NO = 15, ni, no;
-    vector<int> q;
+    vector<int> q; srand(time(0));
     int packets[120] = { 0 }; 
 
     

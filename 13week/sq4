@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <ctime>
 #include <Windows.h>
 using namespace std;
 
@@ -9,7 +10,8 @@ public:
     Queue(int ni, int no, int capacity)
         : NI(ni), NO(no), capacity(capacity), totalLostPackets(0) {
         q.reserve(capacity);
-        packets.reserve(120); 
+        packets.reserve(120);
+        srand(time(0));
     }
 
     void simulate(int endtime) {
@@ -19,7 +21,7 @@ public:
             cout << "stime: " << stime << "s" << endl;
             cout << "Adding " << ni << " packets" << endl;
 
-           
+
             if (capacity < q.size() + ni) {
                 int lost = q.size() + ni - capacity;
                 totalLostPackets += lost;
@@ -33,7 +35,7 @@ public:
 
             cout << "Queue size after adding: " << q.size() << endl;
 
-           
+
             int no = rand() % NO;
             cout << "Removing " << no << " packets" << endl;
             for (int i = 0; i < no && !q.empty(); i++) {
@@ -51,9 +53,8 @@ public:
         saveResults(endtime);
         calculateMetrics(endtime);
     }
-
-private:
-    vector<int> q; srand(timr(0));
+public:
+    vector<int> q;
     int NI, NO, capacity;
     int totalLostPackets;
     vector<int> packets;
@@ -91,6 +92,6 @@ private:
 int main() {
     int NI = 10, NO = 20, capacity = 100;
     Queue queue(NI, NO, capacity);
-    queue.simulate(120); 
+    queue.simulate(120);
     return 123;
 }

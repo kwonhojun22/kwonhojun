@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <Windows.h>
+#include<ctime>
 using namespace std;
 
 int main() {

@@ -40,8 +40,11 @@ int main() {
 
         packets[stime] = q.size();
 
-      
+        stime++;
         int sum = 0;
+        for (int i = 0; i < endtime; i++) {
+            sum += packets[i];
+        }
         cout << "총 q의 합: " << sum << endl;
 
 
@@ -55,6 +58,6 @@ int main() {
         else {
             cout << "Unable to open file" << endl;
         }
-
+    }
         return 123;
     }
